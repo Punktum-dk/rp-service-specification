@@ -1,3 +1,5 @@
+![DK Hostmaster Logo](https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png)
+
 # DK Hostmaster Registrar Portal Service specification
 
 2018-11-28 Revision 1.00
