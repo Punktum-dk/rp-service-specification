@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-<!-- MarkdownTOC bracket=round levels="1,2,3,4,5" indent="  " -->
+<!-- MarkdownTOC bracket=round levels="1,2,3,4,5" indent="  " autolink="true" autoanchor="true" -->
 
 - [Introduction](#introduction)
   - [About this Document](#about-this-document)
