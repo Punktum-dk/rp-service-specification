@@ -2,7 +2,7 @@
 
 # DK Hostmaster Registrar Portal Service specification
 
-2018-11-28 Revision 1.00
+2018-11-28 Revision 1.0
 
 ## Table of Contents
 
@@ -53,7 +53,7 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 ### Document History
 
-1.00 2018-11-28
+1.0 2018-11-28
 
 - Initial revision
 - Describes service version 2.3.X
