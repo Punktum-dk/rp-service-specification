@@ -2,6 +2,8 @@
 
 # DK Hostmaster Registrar Portal Service specification
 
+![GitHub Workflow build status badge markdownlint](https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Workflow/badge.svg)
+
 2018-11-28 Revision 1.0
 
 ## Table of Contents
