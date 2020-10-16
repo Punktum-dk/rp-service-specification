@@ -111,6 +111,4 @@ DK Hostmaster requires whitelisting of IPs for access to the RP service.
 
 Additions and removals of IP addresses can be handled by the registrar itself, but initial setup is currently a manual process handled by DK Hostmaster.
 
-Please submit change requests including registrar handle information to:
-
-- tech@dk-hostmaster.dk
+Please submit change requests including registrar handle information to via our regular support channels.
