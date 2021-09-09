@@ -35,6 +35,8 @@ Revision 2.0
       - [Create WHOIS Handles](#create-whois-handle)
       - [Merge WHOIS Handles](#mergewhois-handles)
       - [Unlinked WHOIS Handles](#unlink-whois-handle)
+    - [Set Management Model Default](#set-management-model-default)
+    - [Set Renewal Policy Default](#set-renewal-policy-default)
   - [DNSSEC](#dnssec)
     - [Manage DNSSEC](#manage-dnssec)
   - [Domain Name](#domain-name)
@@ -43,6 +45,7 @@ Revision 2.0
       - [Waiting List](#waiting-list)
   - [Name Server](#name-server)
     - [Name Server Application](#name-server-application)
+  - [Prepaid](#prepaid)
 - [References](#references)
 - [Resources](#resources)
   - [Mailing list](#mailing-list)
@@ -205,7 +208,7 @@ Registrar portal users created for the [Registrar Account Group](#registrar-acco
 
 The meta-roles are mapped to the WHOIS roles.
 
-| WHOIS Role                | Meta-role                 | Note                                                                                 |
+| WHOIS Role                | Meta-role                 | Note |
 |:-------------------------:|:-------------------------:|--------------------------------------------------------------------------------------|
 | Registrant                | *Registrant*              | This role planned deprecated with the introduction of the registrar management model |
 | Admin/Proxy               | Proxy                     |                                                                                      |
@@ -256,6 +259,31 @@ When unlinking a WHOIS handle from a registrar account, it is no longer possible
 
 Unlinked WHOIS handles have to use the self-service portal (SB) and are no longer formally associated with the registrar account.
 
+<a id="set-management-model-default"></a>
+### Set Management Model Default
+
+The default for the registrar account can be specified in the Registrar Portal.
+
+The feature requires that the portal-user has the meta-role: `Administrator` to set the default, please see: [Meta-Roles](#meta-roles) for more details.
+
+<a id="set-renewal-policy-default"></a>
+### Set Renewal Policy Default
+
+The default renewal policy for the registrar account can be specified in the Registrar Portal.
+
+The feature requires that the portal-user has the meta-role: `Administrator` to set the default, please see: [Meta-Roles](#meta-roles) for more details.
+
+Two options are available:
+
+- Auto-renewal
+- Auto-expire
+
+The value unless changed by the registrar is `Auto-renewal`, since this was the setting prior to the introduction the option of changing it.
+
+Auto-renewal mean that upon expiration the domain name, if active, will be automatically renewed and the price will be deducted from the registrar account and the specified period will extend the lifespan of the domain name and the updated expiry date will reflect this.
+
+Auto-expire does the opposite of auto-renewal, when the expiration date is due, the domain name will be suspended and will no longer be active.
+
 <a id="dnssec"></a>
 ## DNSSEC
 
@@ -297,7 +325,7 @@ The fields available in the application form are the following:
 | Authorization code | This is an optional authorization code is for registering domain names offered for a waiting list position. Please see the details on [waiting list](#waiting-list) handling below
 | Registration period | This is the period of the subscription from 1-10 years |
 | Management | Choice of management model, either: `Registrar Management` or `Registrant Management`. Please see details below on [Management Choice](#mangement-choice) |
-| Renewal | Choice of renewal policy, either: `Auto-renewal` or `Auto-expire` |
+| Renewal | Choice of renewal policy, either: `Auto-renewal` or `Auto-expire`, Please see section on [Prepaid](#prepaid) |
 | PO no. | This is an optional end-customer purchase order number with can be used to identify and track an order |
 | Account code | This is an optional end-customer reference number with can be used to identify and track an order |
 | Registrant handle | This is the mandatory handle of the designated registrant. Please see details below on [Management Choice](#mangement-choice) |
@@ -337,11 +365,13 @@ If the domain name is going to be registered under registrant management, to the
 If the domain name is going to be registrar managed or registered to another handle, the token is required to authorize the application.
 
 <a id="name-server"></a>
+
 ### Name Server
 
 This section describes the processes and features related to name servers.
 
 <a id="name-server-application"></a>
+
 #### Name Server Application
 
 The feature is available in the tab: `WHOIS search`, in the section: `Name server operations`.
@@ -349,6 +379,12 @@ The feature is available in the tab: `WHOIS search`, in the section: `Name serve
 If this section is not available, it is possibly due to that no WHOIS-handles has been associated with the registrar account, which act as name server administrators.
 
 In order to associate any name server administrators with the registrar account, please use the feature [Link WHOIS handles](#link_whois_handles).
+
+<a id="prepaid"></a>
+
+### Prepaid
+
+<a id="references></a>
 
 ## References
 
@@ -359,11 +395,14 @@ List of references used in this document in alphabetical order.
 1. [DK Hostmaster: Sandbox Environment Specification][DKHMSANDBOX]
 1. [DK Hostmaster: EPP Service Specification][DKHMEPP]
 
+<a id="resources></a>
+
 ## Resources
 
 A list of resources for DK Hostmaster Registrar Portal service support is located below.
 
 <a id="mailing-list"></a>
+
 ### Mailing list
 
 DK Hostmaster operates a mailing list for discussion and inquiries  about the DK Hostmaster EPP implementation. To subscribe to this list, write to the address below and follow the instructions. Please note that the list is for technical discussion only, any issues beyond the technical scope will not be responded to, please send these to the contact issue reporting address below and they will be passed on to the appropriate entities within DK Hostmaster.
@@ -371,11 +410,33 @@ DK Hostmaster operates a mailing list for discussion and inquiries  about the DK
 - tech-discuss+subscribe@liste.dk-hostmaster.dk
 
 <a id="issue-reporting"></a>
+
 ### Issue Reporting
 
 For issue reporting related to this specification, the RP implementation or test, sandbox or production environments, please contact us. You are of course welcome to post these to the mailing list mentioned above, otherwise use the regular support channels.
 
+<a id="appendices"></a>
+
 ## Appendices
+
+### Feature and Meta-role Matrix
+
+| Feature                | Meta-role                 |
+|:----------------------:|:-------------------------:|
+| Create portal user | Administrator |
+| Enable/Disable portal user | Administrator |
+| Edit portal user | Administrator |
+| Delete portal user | Administrator |
+| Create service user | Administrator |
+| Enable/Disable service user | Administrator |
+| Edit service user | Administrator |
+| Delete service user | Administrator |
+| Link/Unlink WHOIS handles | Administrator |
+| Merge WHOIS handles | Administrator |
+| Create Registrar account WHOIS handles | Administrator |
+| Apply/Create domain name | Registrar |
+| Transfer domain name | Registrar |
+| Add funds | Billing |
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg
