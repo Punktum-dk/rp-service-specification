@@ -81,6 +81,7 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 2.0 2021-05-13
 
+- Describes service version 3.X.X
 - Added new section on features, the initial features described are:
   - [Registrar Account Group](#registrar-account-group)
   - [Meta-Roles](#meta-roles)
