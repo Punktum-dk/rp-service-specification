@@ -5,7 +5,8 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
- Revision 2.0
+2.0 2021-05-13
+Revision 2.0
 
 ## Table of Contents
 
@@ -38,6 +39,8 @@
     - [Manage DNSSEC](#manage-dnssec)
   - [Domain Name](#domain-name)
     - [Domain Name Application](#domain-name-application)
+      - [Management Choice](#management-choice)
+      - [Waiting List](#waiting-list)
   - [Name Server](#name-server)
     - [Name Server Application](#name-server-application)
 - [References](#references)
@@ -272,6 +275,8 @@ This section describes the processes and features related to domain names.
 
 The feature is available in the tab: `WHOIS search`, in the section: `Register domain name`.
 
+The feature requires that the portal-user has the meta-role: `Registrar`, please see: [Meta-Roles](#meta-roles) for more details.
+
 As described in the ["Implementation guide for registration of .dk"][IMPLGUIDE] there are two methods for registration of domain names.
 
 1. Method 1: Requires that the accept of terms and conditions is done at the registrar and this is communicated via the application
@@ -281,7 +286,54 @@ The application for allows for specification of a timestamp in the field: `Date 
 
 The entered date has to match the date and time when the registrant accepted the presented terms and conditions.
 
-The feature requires that the portal-user has the meta-role: `Registrar`, please see: [Meta-Roles](#meta-roles) for more details.
+The fields available in the application form are the following:
+
+| Field                | Note                 |
+|:--------------------:|:---------------------|
+| Registrar | This is prefilled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
+| Reference | This is a registrar reference with can be used to identify and track an application |
+| Domain name | This is the domain name to be applied for |
+| Authorization code | This is an optional authorization code is for registering domain names offered for a waiting list position. Please see the details on [waiting list](#waiting-list) handling below
+| Registration period | This is the period of the subscription from 1-10 years |
+| Management | Choice of management model, either: `Registrar Management` or `Registrant Management`. Please see details below on [Management Choice](#mangement-choice) |
+| Renewal | Choice of renewal policy, either: `Auto-renewal` or `Auto-expire` |
+| PO no. | This is an optional end-customer purchase order number with can be used to identify and track an order |
+| Account code | This is an optional end-customer reference number with can be used to identify and track an order |
+| Registrant handle | This is the mandatory handle of the designated registrant. Please see details below on [Management Choice](#mangement-choice) |
+| Proxy handle | This is the optional handle of the designated proxy contact. Please see details below on [Management Choice](#mangement-choice) |
+| Payer handle | This is the optional handle of the designated billing contact. Please see details below on [Management Choice](#mangement-choice) |
+| Name servers | These are the mandatory name servers. At least two have to be specified and 7 as a maximum. |
+| DK Hostmaster's agreement accepted | This is for manually entering the timestmap for an end-user agreement to the Terms and Condition of DK Hostmaster |
+
+<a id="management-choice"></a>
+#### Management Choice
+
+When registering a domain name, the registrar has to decide between one of the two offered managment methods:
+
+- `Registrar management`
+- `Registrant management`
+
+The registrar management model extends the control of the registered domain name. Application wise, it has the following implications:
+
+- The `Proxy` handle will not used and will implicitly be the registrar applying for the domain name
+- The `Payer` handle (billing contact) will not be used and will implicitly be the registrar applying for the domain name
+
+The specified `Registrant` will have to be under the same management choice as the domain name. It is not possible to register a domain name for registrar management with a registrar managed user and vice-versa.
+
+<a id="waiting-list"></a>
+#### Waiting
+
+DK Hostmaster offers [a waiting list service][WAITLIST], where end-users can sign up for a waiting list position for a given domain name of their interest.
+
+When a domain name is deleted, potential waiting list positions are evaluated and the domain name in question is offered to the first position.
+
+The offering process, starts by an email to the waiting list owner. The waitinglist owner has 14 days to accept the offered domain name.
+
+If the offer is accepted the user can take a unique token associated with the offering to a registrar and register the domain name.
+
+If the domain name is going to be registered under registrant management, to the handle of the waiting list owner, the token is not required to authorize the operation.
+
+If the domain name is going to be registrar managed or registered to another handle, the token is required to authorize the application.
 
 <a id="name-server"></a>
 ### Name Server
@@ -328,6 +380,7 @@ For issue reporting related to this specification, the RP implementation or test
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg
 [GHASPLLBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Spellcheck%20Action/badge.svg
 [IMPLGUIDE]: https://www.dk-hostmaster.dk/en/implementation-guide-registration-dk
+[WAITLIST]: https://www.dk-hostmaster.dk/en/waiting-list
 [DKHMMAIL]: https://www.dk-hostmaster.dk/en/mailing-lists
 [DKHMBEREG]: https://www.dk-hostmaster.dk/en/become-registrar
 [DKHMSANDBOX]: https://github.com/DK-Hostmaster/sandbox-environment-specification
