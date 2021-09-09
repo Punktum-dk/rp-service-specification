@@ -283,7 +283,7 @@ As described in the ["Implementation guide for registration of .dk"][IMPLGUIDE] 
 1. Method 1: Requires that the accept of terms and conditions is done at the registrar and this is communicated via the application
 1. Method 2: Requires that the accept of terms and conditions is done at the registry (with DK Hostmaster)
 
-The application for allows for specification of a timestamp in the field: `Date & time`, in the section `DK Hostmasters agreement accepted`
+The application for allows for specification of a timestamp in the field: `Date & time`, in the section `DK Hostmaster's agreement accepted`
 
 The entered date has to match the date and time when the registrant accepted the presented terms and conditions.
 
@@ -291,7 +291,7 @@ The fields available in the application form are the following:
 
 | Field                | Note                 |
 |:--------------------:|:---------------------|
-| Registrar | This is prefilled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
+| Registrar | This is pre-filled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
 | Reference | This is a registrar reference with can be used to identify and track an application |
 | Domain name | This is the domain name to be applied for |
 | Authorization code | This is an optional authorization code is for registering domain names offered for a waiting list position. Please see the details on [waiting list](#waiting-list) handling below
@@ -304,12 +304,12 @@ The fields available in the application form are the following:
 | Proxy handle | This is the optional handle of the designated proxy contact. Please see details below on [Management Choice](#mangement-choice) |
 | Payer handle | This is the optional handle of the designated billing contact. Please see details below on [Management Choice](#mangement-choice) |
 | Name servers | These are the mandatory name servers. At least two have to be specified and 7 as a maximum. |
-| DK Hostmaster's agreement accepted | This is for manually entering the timestmap for an end-user agreement to the Terms and Condition of DK Hostmaster |
+| DK Hostmaster's agreement accepted | This is for manually entering the timestamp for an end-user agreement to the Terms and Condition of DK Hostmaster |
 
 <a id="management-choice"></a>
 #### Management Choice
 
-When registering a domain name, the registrar has to decide between one of the two offered managment methods:
+When registering a domain name, the registrar has to decide between one of the two offered management methods:
 
 - `Registrar management`
 - `Registrant management`
@@ -328,7 +328,7 @@ DK Hostmaster offers [a waiting list service][WAITLIST], where end-users can sig
 
 When a domain name is deleted, potential waiting list positions are evaluated and the domain name in question is offered to the first position.
 
-The offering process, starts by an email to the waiting list owner. The waitinglist owner has 14 days to accept the offered domain name.
+The offering process, starts by an email to the waiting list owner. The waiting list owner has 14 days to accept the offered domain name.
 
 If the offer is accepted the user can take a unique token associated with the offering to a registrar and register the domain name.
 

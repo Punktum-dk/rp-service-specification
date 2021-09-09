@@ -6,7 +6,6 @@ DNS
 DNSSEC
 EPP
 hostmaster
-Hostmasters
 https
 IPs
 liste
@@ -21,3 +20,5 @@ unlinked
 unlinking
 VID
 WHOIS
+Hostmaster's
+pre
