@@ -30,6 +30,16 @@ Revision 2.0
   - [Account](#account)
     - [Registrar Account Group](#registrar-account-group)
     - [Meta-Roles](#meta-roles)
+    - [Portal Users](#portal-users)
+      - [Create Portal User](#create-portal-user)
+      - [Enable or Disable Portal User](#enable-or-disable-portal-user)
+      - [Edit Portal User](#edit-portal-user)
+      - [Delete Portal User](#delete-portal-user)
+    - [Service Users](#Service-users)
+      - [Create Service User](#create-service-user)
+      - [Enable or Disable Service User](#enable-or-disable-service-user)
+      - [Edit Service User](#edit-service-user)
+      - [Delete Service User](#delete-service-user)
     - [Linked WHOIS Handles](#linked-whois-handles)
       - [Link WHOIS Handle](#link-whois-handle)
       - [Create WHOIS Registrar Account Handle](#create-whois-handle)
@@ -46,9 +56,14 @@ Revision 2.0
     - [Restore Domain Name](#restore-domain-name)
     - [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name)
     - [Cancel Domain Name](#cancel-domain-name)
+    - [Transfer Domain Name](#transfer-domain-name)
+    - [Change Name Servers for Domain Name](#change-name-servers-for-domain-name)
+    - [Change Registrant for Domain Name](#change-registrant-for-domain-name)
+    - [Renew Domain Name](#renew-domain-name)
   - [Name Server](#name-server)
     - [Name Server Application](#name-server-application)
   - [Prepaid](#prepaid)
+    - [Add funds to registrar account](#add-funds-to-registrar-account)
 - [References](#references)
 - [Resources](#resources)
   - [Mailing list](#mailing-list)
@@ -199,11 +214,11 @@ The registrar account group is representing the registrar account and consist in
 
 Additional accounts can be added for specific and general purpose, such as:
 
-- Domain administration
-- Domain registration
-- Billing and finance administration
-- Name server administration
-- Registrar account administration
+- Domain administration (the proxy meta-role)
+- Domain registration (the registrar meta-role)
+- Billing and finance administration (the payer meta-role)
+- Name server administration (the name server administrator meta-role)
+- Registrar account administration (the administrator meta-role)
 
 The accounts are all represented towards the system using an email.
 
@@ -236,10 +251,96 @@ The meta-roles are mapped to the WHOIS roles.
 | Registrant                | *Registrant*              | This role planned deprecated with the introduction of the registrar management model |
 | Admin/Proxy               | Proxy                     |                                                                                      |
 | Billing                   | Payer                     |                                                                                      |
-| *Registrar*               |                           | This role is an indication of the registrar account administering the domain name    |
+| *Registrar*               | N/A                       | This role is an indication of the registrar account administering the domain name    |
 |                           | *Registrar*               | This role allows for registration of domain names                                    |
-| Name Server Administrator | Name server manager |                                                                                      |
-| *VID contact*             |                           | This role is not available in the registrar portal                                   |
+| Name Server Administrator | Name Server Administrator |                                                                                      |
+| *VID contact*             | N/A                       | This role is not available in the registrar portal                                   |
+| N/A                       | Administrator             | This role is not available as a WHOIS role                                           |
+
+<a id="portal-users"></a>
+
+#### Portal Users
+
+<a id="create-portal-user"></a>
+
+##### Create Portal User
+
+Portal users are intended for human users, for accounts for machine to machine interfaces: like EPP, DAS and DSU please use a [service user](#service-users).
+
+Areas of responsibility can be controlled and divided using meta-roles.
+
+The available meta-roles are:
+
+- Proxy
+- Registrar
+- Payer
+- Name Server Administrator
+- Administrator
+
+<a id="enable-or-disable-portal-user"></a>
+
+##### Enable or Disable Portal User
+
+<a id="edit-portal-user"></a>
+
+##### Edit Portal User
+
+<a id="delete-portal-user"></a>
+
+##### Delete Portal User
+
+If a portal user is not longer in use it can be deleted. Disabling the user is also an option.
+
+<a id="service-users"></a>
+
+#### Service Users
+
+Service users are intended for machine to machine interfaces and currently the following types are available:
+
+- DAS, for more information on the DAS service, please see the [DAS Service Specification][DKHMDAS]
+- DSU, for more information on the DAS service, please see the [DSU Service Specification][DKHMDSU]
+- EPP, for more information on the DAS service, please see the [EPP Service Specification][DKHMEPP]
+
+A user is created for a specific service and it cannot be used for other services.
+
+It is possible to use more than one service user at a time, which makes sense with service users for specific uses. This can be controlled by setting the relevant [Meta-Roles](#meta-roles).
+
+The available meta-roles are:
+
+- Proxy
+- Registrar
+- Payer
+- Name Server Administrator
+
+Creating a single account with all the meta-roles, the model is however flexible so you can specify all the service users you need to represent your own systems.
+
+For example, if you have one system for domain registration and management, including DNSSEC and name servers, but another system for renewals.
+
+1. Create a service user representing the administrative system and assign it the: `Proxy`, `Registrar` and `Name Server Administrator` meta-roles
+
+1. Create a service user representing the billing system and assign it the `Payer` meta-role
+
+This also holds the benefit of the credentials not having to be shared between the systems, because the service users are separate entities.
+
+<a id="create-service-user"></a>
+
+##### Create Service User
+
+Service users are intended for machine to machine interaction, for accounts for people please use a [portal user](#portal-users).
+
+<a id="enable-or-disable-service-user"></a>
+
+##### Enable or Disable Service User
+
+<a id="edit-service-user"></a>
+
+##### Edit Service User
+
+<a id="delete-service-user"></a>
+
+##### Delete Service User
+
+If a service user is not longer in use it can be deleted. Disabling the user is also an option.
 
 <a id="linked_whois_handles"></a>
 
@@ -329,6 +430,8 @@ Getting the suspension lifted requires a [restore domain operation](#restore-dom
 The feature is available in the tab: `WHOIS search`, in the section: `Name server operations`.
 
 If this section is not available, it is due to that no WHOIS-handles has been associated with the registrar account, which act as name server administrators.
+
+As a name server administrator you can add and remove DSRECORDs to and from a domain name linked to your name servers.
 
 <a id="domain-name"></a>
 
@@ -449,7 +552,69 @@ The domain names delegated to these name servers, might stop responding based on
 
 The domain name might might become available for registration upon deletion after the 30 day redemption period. It will not be possible to register or take over the name servers marked for deletion. They can only be recreated after successful deletion by the registry.
 
+<a id="transfer-domain-name"></a>
+
+#### Transfer Domain Name
+
+The feature requires that the portal-user has the meta-role: `Registrar`, please see: [Meta-Roles](#meta-roles) for more details.
+
+<a id="change-name-servers-for-domain-name"></a>
+
+#### Change Name Servers for Domain Name
+
+<a id="change-registrant-for-domain-name"></a>
+
+The feature requires that the portal-user has the meta-role: `Name Server Administrator`, please see: [Meta-Roles](#meta-roles) for more details.
+
+#### Change Registrant for Domain Name
+
+Change of registrant is only possible for a registrar for a registrar managed domain name.
+
+1. The domain name has to be eligible for the transfer
+1. The transfer can only take place within the registrars own portfolio, so it is not possible to do this operation across portfolios. Meaning that the existing registrant and designated registrant both have to be created as uses in the registrars portfolio
+
+Due to the registry requirements for ID-control and agreements to the registry terms and conditions the process might be asynchronous depending on the circumstances of the operation.
+
+- If the request is accompanied by a order confirmation token, this is not requested by the registry
+- If the designated registrant already has completed ID-control successfully or is not required to do so
+
+The request will be instant and the change registrant fee will be deducted from the registrar account upon success
+
+- If the request is not accompanied by an order confirmation token, an accept of the DK Hostmaster's terms and conditions by the registrant, will be requested by the registrar. This request is valid for 14 days
+
+- If the designated registrant is required to complete ID-control, the registry will, as for accept of terms and conditions, contact the user directly are request the ID-control. The request expires after 14 days
+
+The registrar is notified on all steps of the above process:
+
+- Upon request for accept of terms and conditions
+- Upon request for ID-control
+- Upon expiration of request for accept of terms and conditions
+- Upon expiration of request for ID-control
+- Upon rejection of ID-control
+- Success of operation
+
+As for the immediate successful execution, the delayed process the change registrant fee will be deducted from the registrar account upon success.
+
+See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
+
+<a id="renew-domain-name"></a>
+
+#### Renew Domain Name
+
+The feature requires that the portal-user has the meta-role: `Payer`, please see: [Meta-Roles](#meta-roles) for more details.
+
+Domain name subscriptions can be renewed manually via the registrar portal. The feature applies to both:
+
+- Registrant managed domain names, where the registrar is appointed as the billing contact
+- Registrar managed domain names
+
+This can be done up to the expiration date of the specific domain name. It does not influence auto-renew or auto-expiration apart from delaying there effective execution and automatic change to the domain name lifespan.
+
+See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
+
 <a id="name-server"></a>
+
+The feature requires that the portal-user has the meta-role: `Name Server Administrator`, please see: [Meta-Roles](#meta-roles) for more details.
 
 ### Name Server
 
@@ -493,6 +658,46 @@ This operation can be performed as follows:
 
 ### Prepaid
 
+The feature requires that the portal-user has the meta-role: `Payer`, please see: [Meta-Roles](#meta-roles) for more details.
+
+The registrar account is a prepaid account, meaning the registrar holds the responsibility of keeping the account sufficiently funded.
+
+A set of the billable operations will be declined in case of insufficient funds, they are:
+
+- Create domain name
+- Transfer domain name
+
+The other billable operations, not limited by insufficient funding are:
+
+- Automatic renewal
+- Manual renewal
+- Manual restoration
+- Change registrant
+
+Overall the following policies are in place currently.
+
+- Expansion of portfolio requires sufficient funding
+- Maintenance of existing portfolio is possible without sufficient funding
+
+For more information on grace periods and handling of these please refer to the registrar agreement.
+
+<a id="add-funds-to-registrar-account"></a>
+
+#### Add funds to registrar account
+
+Adding funds can to the registrar account can be accomplished in a few ways.
+
+The registrar portal offers, transferring via credit card.
+
+For Danish registrars a unique FIK code has been allocated, which identifies the registrar account
+
+For non-Danish registrars it is possible to do a bank transfer. Handling of bank transfers are manual and are therefor as a minimum subject to registry opening hours and a manual processing time schedules.
+
+The ensure the speediest and most successful processing of  bank transfers make sure to provide the required information:
+
+- IBAN
+- Your registrar account number
+
 <a id="references"></a>
 
 ## References
@@ -504,6 +709,7 @@ List of references used in this document in alphabetical order.
 1. [DK Hostmaster: Sandbox Environment Specification][DKHMSANDBOX]
 1. [DK Hostmaster: EPP Service Specification][DKHMEPP]
 1. [DK Hostmaster: Name Service Specification][DKHMDNS]
+1. [DK Hostmaster: Products and Prices][DKHMPRICES]
 
 <a id="resources"></a>
 
@@ -547,11 +753,11 @@ For issue reporting related to this specification, the RP implementation or test
 | Apply/Create domain name                          | Registrar |
 | Transfer domain name                              | Registrar |
 | Generate authorization for transfer               | |
-| Add funds to registrar account                    | Billing |
-| Renew domain name                                 | Billing |
+| Add funds to registrar account                    | Payer |
+| Renew domain name                                 | Payer |
 | Change Name Servers                               | Name Server Administrator |
 | Generate authorization for change of name servers | Name Server Administrator |
-| Administer Name Servers                            | Name Server Administrator |
+| Administer Name Servers                           | Name Server Administrator |
 | Administer domain name                            | Proxy |
 | Administer WHOIS user registrant                  | Proxy |
 | Restore domain name                               | |
@@ -570,3 +776,5 @@ For issue reporting related to this specification, the RP implementation or test
 [DKHMPRICES]: https://www.dk-hostmaster.dk/en/products-and-prices
 [DKHMDNS]: https://github.com/DK-Hostmaster/dkhm-name-service-specification
 [DKHMDNSGLUE]: https://github.com/DK-Hostmaster/dkhm-name-service-specification#glue-records
+[DKHMDAS]: https://github.com/DK-Hostmaster/das-service-specification
+[DKHMDSU]: https://github.com/DK-Hostmaster/dsu-service-specification

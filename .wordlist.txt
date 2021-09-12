@@ -23,3 +23,8 @@ WHOIS
 Hostmaster's
 pre
 superordinate
+DAS
+DSU
+FIK
+IBAN
+DSRECORDs
