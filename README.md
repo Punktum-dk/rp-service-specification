@@ -32,7 +32,7 @@ Revision 2.0
     - [Meta-Roles](#meta-roles)
     - [Linked WHOIS Handles](#linked-whois-handles)
       - [Link WHOIS Handle](#link-whois-handle)
-      - [Create WHOIS Handles](#create-whois-handle)
+      - [Create WHOIS Registrar Account Handle](#create-whois-handle)
       - [Merge WHOIS Handles](#mergewhois-handles)
       - [Unlinked WHOIS Handles](#unlink-whois-handle)
     - [Set Management Model Default](#set-management-model-default)
@@ -243,7 +243,7 @@ The meta-roles are mapped to the WHOIS roles.
 
 <a id="linked_whois_handles"></a>
 
-### Linked WHOIS Handles
+#### Linked WHOIS Handles
 
 The feature is available in the tab: `Administration`, in the section: `Register account`, under the menu point: `Linked WHOIS handles`.
 
@@ -257,23 +257,25 @@ The features offers the following:
 
 <a id="link_whois_handle"></a>
 
-#### Link WHOIS Handle
+##### Link WHOIS Handle
 
 When using the feature to link WHOIS handles, meaning they are associated with a registrar account, a list of candidates are presented.
 
-The requirements for linking are strict and if a certain WHOIS handle does not appear in the list, it might be due to data not matching the registrar account.
+The requirements for linking are strict and if a certain WHOIS handle does not appear in the list, it might be due to data not matching the registrar account data.
 
-When linking a WHOIS handle to a registrar account, it is no longer possible to log in to the self-service portal (SB) using this handle. Unlinking has the opposite effect and unlinked WHOIS handles have to use the self-service portal (SB).
+:warning: When linking a WHOIS handle to a registrar account, it is no longer possible to log in to the self-service portal (SB) using this handle. Unlinking has the opposite effect and unlinked WHOIS handles have to use the self-service portal (SB).
 
-<a id="create_whois_handle"></a>
+<a id="create_whois_registrar_account_handle"></a>
 
-#### Create WHOIS Handle
+##### Create WHOIS Registrar Account Handle
 
-A new handle will be created with the same data as the registrar account and it will be automatically linked to the registrar account. You can of course unlink the WHOIS handle from the account.
+A new handle will be created with the same data as the registrar account and it will be automatically linked to the registrar account. You can of course [unlink the WHOIS handle](#unlink_whois_handle") from the account.
+
+Creating WHOIS handles for end-users, is done using a another feature.
 
 <a id="merge_whois_handles"></a>
 
-#### Merge WHOIS Handles
+##### Merge WHOIS Handles
 
 Merging handles, is the ability to collapse several handles into one.
 
@@ -281,7 +283,7 @@ This can be useful if you have more than one billing contact, name server admini
 
 <a id="unlink_whois_handle"></a>
 
-#### Unlink WHOIS Handle
+##### Unlink WHOIS Handle
 
 When unlinking a WHOIS handle from a registrar account, it is no longer possible to administer the assets associated with this handle via the registrar portal (RP) as portal users. Linking has the opposite effect.
 
@@ -289,7 +291,7 @@ Unlinked WHOIS handles have to use the self-service portal (SB) and are no longe
 
 <a id="set-management-model-default"></a>
 
-### Set Management Model Default
+#### Set Management Model Default
 
 The default for the registrar account can be specified in the Registrar Portal.
 
@@ -297,7 +299,7 @@ The feature requires that the portal-user has the meta-role: `Administrator` to 
 
 <a id="set-renewal-policy-default"></a>
 
-### Set Renewal Policy Default
+#### Set Renewal Policy Default
 
 The default renewal policy for the registrar account can be specified in the Registrar Portal.
 
