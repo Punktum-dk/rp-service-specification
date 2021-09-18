@@ -44,7 +44,7 @@ Revision 2.0
       - [Link WHOIS Handle](#link-whois-handle)
       - [Create WHOIS Registrar Account Handle](#create-whois-handle)
       - [Merge WHOIS Handles](#mergewhois-handles)
-      - [Unlinked WHOIS Handles](#unlink-whois-handle)
+      - [Unlink WHOIS Handle](#unlink-whois-handle)
     - [Set Management Model Default](#set-management-model-default)
     - [Set Renewal Policy Default](#set-renewal-policy-default)
   - [DNSSEC](#dnssec)
@@ -55,7 +55,7 @@ Revision 2.0
       - [Waiting List](#waiting-list)
     - [Restore Domain Name](#restore-domain-name)
     - [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name)
-    - [Cancel Domain Name](#cancel-domain-name)
+    - [Cancel/Delete Domain Name](#cancel-domain-name)
     - [Transfer Domain Name](#transfer-domain-name)
     - [Change Name Servers for Domain Name](#change-name-servers-for-domain-name)
     - [Change Registrant for Domain Name](#change-registrant-for-domain-name)
@@ -69,6 +69,7 @@ Revision 2.0
   - [Mailing list](#mailing-list)
   - [Issue Reporting](#issue-reporting)
 - [Appendices](#appendices)
+  - [Feature and meta-role Matrix](#feature-and-meta-role-matrix)
 
 <!-- /MarkdownTOC -->
 
@@ -85,6 +86,8 @@ The document is targeted at registrars as audience.
 ### About this Document
 
 This specification describes version 2.X.X of the DK Hostmaster RP service. Future releases will be reflected in updates to this specification, please see the document history section below.
+
+Screenshots for depicting features can be seen bu clicking the :eye_speech_bubble: icon. In the documentation the English versions are linked and used, equivalent versions in Danish are available in the screenshots directory of this repository, see also: [References](#references).
 
 Do note that the specification describes the latest released service. Service version is listed in the Document History, so given changes implemented in the service are reflected in the specification. Do note that a service might be released to the sandbox environment prior to being released to production after a grace period.
 
@@ -189,9 +192,7 @@ DK Hostmaster requires whitelisting of IPs for access to the RP service.
 
 Additions and removals of IP addresses can be handled by the registrar itself, but initial setup is currently a manual process handled by DK Hostmaster.
 
-Please submit change requests including registrar handle information to:
-
-- tech@dk-hostmaster.dk
+Please submit change requests including registrar handle information to via the regular support channels.
 
 <a id="features"></a>
 
@@ -397,6 +398,23 @@ Unlinked WHOIS handles have to use the self-service portal (SB) and are no longe
 The default for the registrar account can be specified in the Registrar Portal.
 
 The feature requires that the portal-user has the meta-role: `Administrator` to set the default, please see: [Meta-Roles](#meta-roles) for more details.
+
+1. Log in to the Registrar Portal
+1. Click on the "ADMINISTRATION" tab, if is not already displaying
+1. Click "Contact information" on the administration tab under "Registrar account" [:eye_speech_bubble:](screenshots/RP-ADMINISTRATION.png)
+1. Locate the ""Registration settings" section [:eye_speech_bubble:](screenshots/RP-CONTACT_INFORMATION.png)
+1. Set default/account settings for your registrar account for: [:eye_speech_bubble:](screenshots/RP-REGISTRATION_SETTINGS.png)
+    a. "Domain name management"
+    b. "Domain name renewal"
+1. Click "SAVE"
+
+The changes are set instantly and will apply to:
+
+- Domain name registrations
+- Contact creations
+- Transfers of domain names
+
+Done after the setting has been changed.
 
 <a id="set-renewal-policy-default"></a>
 
@@ -710,6 +728,7 @@ List of references used in this document in alphabetical order.
 1. [DK Hostmaster: EPP Service Specification][DKHMEPP]
 1. [DK Hostmaster: Name Service Specification][DKHMDNS]
 1. [DK Hostmaster: Products and Prices][DKHMPRICES]
+1. [DK Hostmaster: Registrar Portal Service Specification Screenshots](screenshots/)
 
 <a id="resources"></a>
 
@@ -735,34 +754,38 @@ For issue reporting related to this specification, the RP implementation or test
 
 ## Appendices
 
+<a id="feature-and-meta-role-matrix"></a>
+
 ### Feature and Meta-role Matrix
 
-| Feature                                           | Meta-role     |
-|:--------------------------------------------------|:--------------|
-| Create portal user                                | Administrator |
-| Enable/Disable portal user                        | Administrator |
-| Edit portal user                                  | Administrator |
-| Delete portal user                                | Administrator |
-| Create service user                               | Administrator |
-| Enable/Disable service user                       | Administrator |
-| Edit service user                                 | Administrator |
-| Delete service user                               | Administrator |
-| Link/Unlink WHOIS handle                          | Administrator |
-| Merge WHOIS handles                               | Administrator |
-| Create Registrar account WHOIS handle             | Administrator |
-| Apply/Create domain name                          | Registrar |
-| Transfer domain name                              | Registrar |
-| Generate authorization for transfer               | |
-| Add funds to registrar account                    | Payer |
-| Renew domain name                                 | Payer |
-| Change Name Servers                               | Name Server Administrator |
-| Generate authorization for change of name servers | Name Server Administrator |
-| Administer Name Servers                           | Name Server Administrator |
-| Administer domain name                            | Proxy |
-| Administer WHOIS user registrant                  | Proxy |
-| Restore domain name                               | |
-| Cancel (delete) domain name                       | |
-| Set auto-expire/renewal for a domain name         | |
+| Feature                                                                            | Meta-role     |
+|:-----------------------------------------------------------------------------------|:--------------|
+| [Create Portal User](#create-portal-user)                                          | Administrator |
+| [Enable/Disable Portal User](#enable-or-disable-portal-user)                       | Administrator |
+| [Edit Portal User](#edit-portal-user)                                              | Administrator |
+| [Delete Portal User](#delete-portal-user)                                          | Administrator |
+| [Create Service User](#create-service-user)                                        | Administrator |
+| [Enable/Disable Service User](#enable-or-disable-service-user)                     | Administrator |
+| [Edit Service User](#edit-service-user)                                            | Administrator |
+| [Delete Service User](#delete-service-user)                                        | Administrator |
+| [Link WHOIS Handle](#link-whois-handle)                                            | Administrator |
+| [Unlink WHOIS Handle](#unlink-whois-handle)                                         | Administrator |
+| [Merge WHOIS Handles](#mergewhois-handles)                                         | Administrator |
+| [Create WHOIS Registrar Account Handle](#create-whois-handle)                      | Administrator |
+| [Apply/Create domain name](#domain-name-application)                               | Registrar |
+| [Transfer Domain Name](#transfer-domain-name)                                      | Registrar |
+| Generate authorization for transfer                                                | |
+| [Add funds to Registrar Account](#add-funds-to-registrar-account)                  | Payer |
+| [Renew Domain Name](#renew-domain-name)                                            | Payer |
+| Change Name Servers                                                                | Name Server Administrator |
+| Generate authorization for change of name servers                                  | Name Server Administrator |
+| Administer Name Servers                                                            | Name Server Administrator |
+| Administer domain name                                                             | Proxy |
+| Administer WHOIS user registrant                                                   | Proxy |
+| [Restore Domain Name](#restore-domain-name)                                        | Proxy |
+| [Cancel/Delete Domain Name](#cancel-domain-name)                                   | Proxy |
+| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name) | |
+| Set period for domain name                                                         | Proxy |
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg
