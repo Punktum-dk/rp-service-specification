@@ -5,7 +5,7 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2.0 2021-05-13
+2021-05-13
 Revision 2.0
 
 ## Table of Contents
@@ -769,12 +769,12 @@ For issue reporting related to this specification, the RP implementation or test
 | [Edit Service User](#edit-service-user)                                            | Administrator |
 | [Delete Service User](#delete-service-user)                                        | Administrator |
 | [Link WHOIS Handle](#link-whois-handle)                                            | Administrator |
-| [Unlink WHOIS Handle](#unlink-whois-handle)                                         | Administrator |
+| [Unlink WHOIS Handle](#unlink-whois-handle)                                        | Administrator |
 | [Merge WHOIS Handles](#mergewhois-handles)                                         | Administrator |
 | [Create WHOIS Registrar Account Handle](#create-whois-handle)                      | Administrator |
 | [Apply/Create domain name](#domain-name-application)                               | Registrar |
 | [Transfer Domain Name](#transfer-domain-name)                                      | Registrar |
-| Generate authorization for transfer                                                | |
+| Generate authorization for transfer                                                | Proxy |
 | [Add funds to Registrar Account](#add-funds-to-registrar-account)                  | Payer |
 | [Renew Domain Name](#renew-domain-name)                                            | Payer |
 | Change Name Servers                                                                | Name Server Administrator |
@@ -784,8 +784,8 @@ For issue reporting related to this specification, the RP implementation or test
 | Administer WHOIS user registrant                                                   | Proxy |
 | [Restore Domain Name](#restore-domain-name)                                        | Proxy |
 | [Cancel/Delete Domain Name](#cancel-domain-name)                                   | Proxy |
-| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name) | |
-| Set period for domain name                                                         | Proxy |
+| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name) | Proxy |
+| Set period for domain name                                                         | Proxy / Payer |
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg
