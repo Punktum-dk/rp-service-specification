@@ -580,9 +580,9 @@ The feature requires that the portal-user has the meta-role: `Registrar`, please
 
 #### Change Name Servers for Domain Name
 
-<a id="change-registrant-for-domain-name"></a>
-
 The feature requires that the portal-user has the meta-role: `Name Server Administrator`, please see: [Meta-Roles](#meta-roles) for more details.
+
+<a id="change-registrant-for-domain-name"></a>
 
 #### Change Registrant for Domain Name
 
