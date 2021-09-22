@@ -5,8 +5,8 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-05-13
-Revision 2.0
+2021-09-22
+Revision 3.0
 
 ## Table of Contents
 
@@ -108,6 +108,10 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 
 ### Document History
+
+3.0 2021-09-22
+
+- Relabeled to follow the version number, changes as for revision 2.0
 
 2.0 2021-05-13
 
