@@ -225,7 +225,7 @@ Additional accounts can be added for specific and general purpose, such as:
 - Name server administration (the name server administrator meta-role)
 - Registrar account administration (the administrator meta-role)
 
-The accounts are all represented towards the system using an email.
+The accounts are all represented towards the system using an email address.
 
 <a id="meta-roles"></a>
 
@@ -430,14 +430,14 @@ The feature requires that the portal-user has the meta-role: `Administrator` to 
 
 Two options are available:
 
-- Auto-renewal
-- Auto-expire
+- Automatic renewal (`Auto-renew`)
+- Automatic expiration (`Auto-expire`)
 
-The value unless changed by the registrar is auto-renewal, since this was the only available option prior to the introduction auto-expire.
+The value unless changed by the registrar is automatic renewal, since this was the only available option prior to the introduction automatic expiration.
 
-Auto-renewal mean that upon expiration the domain name, if active, will be automatically renewed and the price will be deducted from the registrar account and the specified period will extend the lifespan of the domain name and the updated expiry date will reflect this.
+Automatic renewal means that upon expiration the domain name, if active, will be automatically renewed and the price will be deducted from the registrar account and the specified period will extend the lifespan of the domain name and the updated expiry date will reflect this.
 
-Auto-expire does the opposite of auto-renewal, when the expiration date is due, the domain name will be suspended and will no longer be active.
+Automatic expiration does the opposite of automatic renewal, when the expiration date is due, the domain name will be suspended and will no longer be active.
 
 Getting the suspension lifted requires a [restore domain operation](#restore-domain).
 
@@ -536,7 +536,7 @@ If the domain name is going to be registrar managed or registered to another han
 The restore domain feature can be used to restore domain names, which have been suspended, during the redemption period of 30 days. The suspension can be one of:
 
 - When a domain name is suspended due to manual cancellation. See [Cancel domain name](#cancel-domain-name)
-- When a domain name has exceeded its expiry date and it is set to auto-expire. See [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name)
+- When a domain name has exceeded its expiry date and it is set to automatic expiration. See [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name)
 
 The operation will change the registrar account:
 
@@ -549,7 +549,7 @@ See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICE
 
 #### Set auto-expire/renewal for a domain name
 
-The default setting for auto-expire and auto-renewal can be controlled on an account level and is set when a domain name is created.
+The default setting for automatic expiration and renewal can be controlled on an account level and is set when a domain name is created.
 
 It can also be set for a single domain name.
 
@@ -630,17 +630,17 @@ Domain name subscriptions can be renewed manually via the registrar portal. The 
 - Registrant managed domain names, where the registrar is appointed as the billing contact
 - Registrar managed domain names
 
-This can be done up to the expiration date of the specific domain name. It does not influence auto-renew or auto-expiration apart from delaying there effective execution and automatic change to the domain name lifespan.
+This can be done up to the expiration date of the specific domain name. It does not influence automatic renewal or automatic expiration apart from delaying there effective execution and automatic change to the domain name lifespan.
 
 See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
 
 <a id="name-server"></a>
 
-The feature requires that the portal-user has the meta-role: `Name Server Administrator`, please see: [Meta-Roles](#meta-roles) for more details.
-
 ### Name Server
 
 This section describes the processes and features related to name servers.
+
+The feature requires that the portal-user has the meta-role: `Name Server Administrator`, please see: [Meta-Roles](#meta-roles) for more details.
 
 <a id="name-server-application"></a>
 
