@@ -59,6 +59,7 @@ Revision 3.0
     - [Transfer Domain Name](#transfer-domain-name)
     - [Change Name Servers for Domain Name](#change-name-servers-for-domain-name)
     - [Change Registrant for Domain Name](#change-registrant-for-domain-name)
+    - [Change Billing Contact for Domain Name](#change-billing-contact-for-domain-name)
     - [Renew Domain Name](#renew-domain-name)
   - [Name Server](#name-server)
     - [Name Server Application](#name-server-application)
@@ -251,16 +252,16 @@ Registrar portal users created for the [Registrar Account Group](#registrar-acco
 
 The meta-roles are mapped to the WHOIS roles.
 
-| WHOIS Role                | Meta-role                 | Note |
+|        WHOIS Role         |         Meta-role         | Note                                                                                 |
 |:-------------------------:|:-------------------------:|--------------------------------------------------------------------------------------|
-| Registrant                | *Registrant*              | This role planned deprecated with the introduction of the registrar management model |
-| Admin/Proxy               | Proxy                     |                                                                                      |
-| Billing                   | Payer                     |                                                                                      |
-| *Registrar*               | N/A                       | This role is an indication of the registrar account administering the domain name    |
-|                           | *Registrar*               | This role allows for registration of domain names                                    |
+|        Registrant         |       *Registrant*        | This role planned deprecated with the introduction of the registrar management model |
+|        Admin/Proxy        |           Proxy           |                                                                                      |
+|          Billing          |           Payer           |                                                                                      |
+|        *Registrar*        |            N/A            | This role is an indication of the registrar account administering the domain name    |
+|                           |        *Registrar*        | This role allows for registration of domain names                                    |
 | Name Server Administrator | Name Server Administrator |                                                                                      |
-| *VID contact*             | N/A                       | This role is not available in the registrar portal                                   |
-| N/A                       | Administrator             | This role is not available as a WHOIS role                                           |
+|       *VID contact*       |            N/A            | This role is not available in the registrar portal                                   |
+|            N/A            |       Administrator       | This role is not available as a WHOIS role                                           |
 
 <a id="portal-users"></a>
 
@@ -480,11 +481,11 @@ The entered date has to match the date and time when the registrant accepted the
 
 The fields available in the application form are the following:
 
-| Field                | Note                 |
-|:---------------------|:---------------------|
-| Registrar | This is pre-filled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
-| Reference | This is a registrar reference with can be used to identify and track an application |
-| Domain name | This is the domain name to be applied for |
+| Field       | Note                                                                                                                                                                       |
+|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Registrar   | This is pre-filled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
+| Reference   | This is a registrar reference with can be used to identify and track an application                                                                                        |
+| Domain name | This is the domain name to be applied for                                                                                                                                  |
 | Authorization code | This is an optional authorization code is for registering domain names offered for a waiting list position. Please see the details on [waiting list](#waiting-list) handling below
 | Registration period | This is the period of the subscription from 1-10 years |
 | Management | Choice of management model, either: `Registrar Management` or `Registrant Management`. Please see details below on [Management Choice](#mangement-choice) |
@@ -619,6 +620,10 @@ As for the immediate successful execution, the delayed process the change regist
 
 See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
 
+<a id="change-billing-contact-for-domain-name"></a>
+
+#### Change Billing Contact for Domain Name
+
 <a id="renew-domain-name"></a>
 
 #### Renew Domain Name
@@ -630,7 +635,21 @@ Domain name subscriptions can be renewed manually via the registrar portal. The 
 - Registrant managed domain names, where the registrar is appointed as the billing contact
 - Registrar managed domain names
 
-This can be done up to the expiration date of the specific domain name. It does not influence automatic renewal or automatic expiration apart from delaying there effective execution and automatic change to the domain name lifespan.
+Manual renewal can be done up to the expiration date of the specific domain name. It does not influence automatic renewal or automatic expiration apart from delaying there effective execution and automatic change to the domain name lifespan, please see the below matrices outlining the different scenarios for manual renewal.
+
+| Registrar Management | Billing contact is registrar | Billing contact is non-registrar |
+|----------------------|------------------------------|----------------------------------|
+| Automatic renewal    | < expiration date            | N/A                              |
+| Automatic expiration | < expiration date            | N/A                              |
+
+| Registrant Management | Billing contact is registrar | Billing contact is non-registrar |
+|-----------------------|------------------------------|----------------------------------|
+| Automatic renewal     | < expiration date            | < expiration date - X days :bookmark: *1|
+| Automatic expiration  | < expiration date            | N/A                              |
+
+:bookmark_tabs: *1 When an invoice is generated for a registrant managed domain name where the billing contact is a non-registrar, the domain names with expiration in a given calendar month are collected on a single invoice for the month as a whole. This mean that a given domain name can be marked for collection between 45 to 75 days prior to expiration. The 45 days are due to the constraints involving requirements for automatic payment via **Betalings Service** (BS) and since a domain name can have expiration by the end of the month, the length of the month has to be taken into account, extending the period with 30 days, giving a total of 75 days.
+
+Do note the constraints on when you can change the billing contact, since might limit window of opportunity for manual renewal and being the billing contact for the domain is a explicit requirement.
 
 See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
 
@@ -762,34 +781,34 @@ For issue reporting related to this specification, the RP implementation or test
 
 ### Feature and Meta-role Matrix
 
-| Feature                                                                            | Meta-role     |
-|:-----------------------------------------------------------------------------------|:--------------|
-| [Create Portal User](#create-portal-user)                                          | Administrator |
-| [Enable/Disable Portal User](#enable-or-disable-portal-user)                       | Administrator |
-| [Edit Portal User](#edit-portal-user)                                              | Administrator |
-| [Delete Portal User](#delete-portal-user)                                          | Administrator |
-| [Create Service User](#create-service-user)                                        | Administrator |
-| [Enable/Disable Service User](#enable-or-disable-service-user)                     | Administrator |
-| [Edit Service User](#edit-service-user)                                            | Administrator |
-| [Delete Service User](#delete-service-user)                                        | Administrator |
-| [Link WHOIS Handle](#link-whois-handle)                                            | Administrator |
-| [Unlink WHOIS Handle](#unlink-whois-handle)                                        | Administrator |
-| [Merge WHOIS Handles](#mergewhois-handles)                                         | Administrator |
-| [Create WHOIS Registrar Account Handle](#create-whois-handle)                      | Administrator |
-| [Apply/Create domain name](#domain-name-application)                               | Registrar |
-| [Transfer Domain Name](#transfer-domain-name)                                      | Registrar |
-| Generate authorization for transfer                                                | Proxy |
-| [Add funds to Registrar Account](#add-funds-to-registrar-account)                  | Payer |
-| [Renew Domain Name](#renew-domain-name)                                            | Payer |
+| Feature                                                                            | Meta-role                 |
+|:-----------------------------------------------------------------------------------|:--------------------------|
+| [Create Portal User](#create-portal-user)                                          | Administrator             |
+| [Enable/Disable Portal User](#enable-or-disable-portal-user)                       | Administrator             |
+| [Edit Portal User](#edit-portal-user)                                              | Administrator             |
+| [Delete Portal User](#delete-portal-user)                                          | Administrator             |
+| [Create Service User](#create-service-user)                                        | Administrator             |
+| [Enable/Disable Service User](#enable-or-disable-service-user)                     | Administrator             |
+| [Edit Service User](#edit-service-user)                                            | Administrator             |
+| [Delete Service User](#delete-service-user)                                        | Administrator             |
+| [Link WHOIS Handle](#link-whois-handle)                                            | Administrator             |
+| [Unlink WHOIS Handle](#unlink-whois-handle)                                        | Administrator             |
+| [Merge WHOIS Handles](#mergewhois-handles)                                         | Administrator             |
+| [Create WHOIS Registrar Account Handle](#create-whois-handle)                      | Administrator             |
+| [Apply/Create domain name](#domain-name-application)                               | Registrar                 |
+| [Transfer Domain Name](#transfer-domain-name)                                      | Registrar                 |
+| Generate authorization for transfer                                                | Proxy                     |
+| [Add funds to Registrar Account](#add-funds-to-registrar-account)                  | Payer                     |
+| [Renew Domain Name](#renew-domain-name)                                            | Payer                     |
 | Change Name Servers                                                                | Name Server Administrator |
 | Generate authorization for change of name servers                                  | Name Server Administrator |
 | Administer Name Servers                                                            | Name Server Administrator |
-| Administer domain name                                                             | Proxy |
-| Administer WHOIS user registrant                                                   | Proxy |
-| [Restore Domain Name](#restore-domain-name)                                        | Proxy |
-| [Cancel/Delete Domain Name](#cancel-domain-name)                                   | Proxy |
-| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name) | Proxy |
-| Set period for domain name                                                         | Proxy / Payer |
+| Administer domain name                                                             | Proxy                     |
+| Administer WHOIS user registrant                                                   | Proxy                     |
+| [Restore Domain Name](#restore-domain-name)                                        | Proxy                     |
+| [Cancel/Delete Domain Name](#cancel-domain-name)                                   | Proxy                     |
+| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name) | Proxy                     |
+| Set period for domain name                                                         | Proxy / Payer             |
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg

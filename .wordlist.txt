@@ -28,3 +28,4 @@ DSU
 FIK
 IBAN
 DSRECORDs
+Betalings
