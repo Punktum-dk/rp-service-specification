@@ -5,8 +5,8 @@
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
 
-2021-09-22
-Revision 3.0
+2021-12-02
+Revision 3.1
 
 ## Table of Contents
 
@@ -57,7 +57,9 @@ Revision 3.0
     - [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name)
     - [Cancel/Delete Domain Name](#cancel-domain-name)
     - [Transfer Domain Name](#transfer-domain-name)
+    - [Generate Authorization for Transfer](#generate-authorization-for-transfer)
     - [Change Name Servers for Domain Name](#change-name-servers-for-domain-name)
+    - [Generate Authorization for Change of Name Servers](#generate-authorization-for-change-of-name-servers)
     - [Change Registrant for Domain Name](#change-registrant-for-domain-name)
     - [Renew Domain Name](#renew-domain-name)
   - [Name Server](#name-server)
@@ -108,6 +110,11 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 <a id="document-history"></a>
 
 ### Document History
+
+3.1 2021-12-02
+
+- Added documentation for: [Generate Authorization for Transfer](#generate-authorization-for-transfer) with the new and improved token format
+- Added documentation for: [Generate Authorization for Change of Name Servers](#generate-authorization-for-change-of-name-servers) with the new and improved token format
 
 3.0 2021-09-22
 
@@ -251,16 +258,16 @@ Registrar portal users created for the [Registrar Account Group](#registrar-acco
 
 The meta-roles are mapped to the WHOIS roles.
 
-| WHOIS Role                | Meta-role                 | Note |
+|        WHOIS Role         |         Meta-role         | Note                                                                                 |
 |:-------------------------:|:-------------------------:|--------------------------------------------------------------------------------------|
-| Registrant                | *Registrant*              | This role planned deprecated with the introduction of the registrar management model |
-| Admin/Proxy               | Proxy                     |                                                                                      |
-| Billing                   | Payer                     |                                                                                      |
-| *Registrar*               | N/A                       | This role is an indication of the registrar account administering the domain name    |
-|                           | *Registrar*               | This role allows for registration of domain names                                    |
+|        Registrant         |       *Registrant*        | This role planned deprecated with the introduction of the registrar management model |
+|        Admin/Proxy        |           Proxy           |                                                                                      |
+|          Billing          |           Payer           |                                                                                      |
+|        *Registrar*        |            N/A            | This role is an indication of the registrar account administering the domain name    |
+|                           |        *Registrar*        | This role allows for registration of domain names                                    |
 | Name Server Administrator | Name Server Administrator |                                                                                      |
-| *VID contact*             | N/A                       | This role is not available in the registrar portal                                   |
-| N/A                       | Administrator             | This role is not available as a WHOIS role                                           |
+|       *VID contact*       |            N/A            | This role is not available in the registrar portal                                   |
+|            N/A            |       Administrator       | This role is not available as a WHOIS role                                           |
 
 <a id="portal-users"></a>
 
@@ -480,11 +487,11 @@ The entered date has to match the date and time when the registrant accepted the
 
 The fields available in the application form are the following:
 
-| Field                | Note                 |
-|:---------------------|:---------------------|
-| Registrar | This is pre-filled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
-| Reference | This is a registrar reference with can be used to identify and track an application |
-| Domain name | This is the domain name to be applied for |
+| Field       | Note                                                                                                                                                                       |
+|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Registrar   | This is pre-filled with the registrar account handle and cannot be changed, it does not influence the management model directly, it only to handle the application process |
+| Reference   | This is a registrar reference with can be used to identify and track an application                                                                                        |
+| Domain name | This is the domain name to be applied for                                                                                                                                  |
 | Authorization code | This is an optional authorization code is for registering domain names offered for a waiting list position. Please see the details on [waiting list](#waiting-list) handling below
 | Registration period | This is the period of the subscription from 1-10 years |
 | Management | Choice of management model, either: `Registrar Management` or `Registrant Management`. Please see details below on [Management Choice](#mangement-choice) |
@@ -580,11 +587,65 @@ The domain name might might become available for registration upon deletion afte
 
 The feature requires that the portal-user has the meta-role: `Registrar`, please see: [Meta-Roles](#meta-roles) for more details.
 
+<a id="generate-authorization-for-transfer">Generate Authorization for Transfer</a>
+
+An authorization token can be generated/issued for transfer to another registrar, where the receiving registrar via the token has the authorization to perform the operation.
+
+The authorization token has to be communicated out of band.
+
+The token has the format: `<role>-<operation>-<unique token>`
+
+An example: `REG-TRANSFER-098f6bcd4621d373cade4e832627b4f6`
+
+- The authorization is generated/issued by a registrar (`REG`, for registrar)
+- The authorization is for a transfer operation (`TRANSFER`)
+- and finally a unique key
+
+Since an authorization could also be issue by the registrant, that example would resemble the following: `OWN-TRANSFER-098f6bcd4621d373cade4e832627b4f6`
+
+- The authorization is generated/issued by a registrant (`OWN`, for registrant/_owner_)
+- The authorization is for a transfer operation (`TRANSFER`)
+- and finally a unique key
+
+The authorization expires after 14 days or by use. It can be retracted via the registrar portal, by deletion of the authorization.
+
 <a id="change-name-servers-for-domain-name"></a>
 
 #### Change Name Servers for Domain Name
 
 The feature requires that the portal-user has the meta-role: `Name Server Administrator`, please see: [Meta-Roles](#meta-roles) for more details.
+
+<a id="(#generate-authorization-for-change-of-name-servers)>
+
+#### Generate Authorization for Change of Name Servers
+
+An authorization token can be generated/issued for change of name servers by another name server administrator, where the receiving name server administrator via the token has the authorization to perform the operation.
+
+The authorization token has to be communicated out of band.
+
+The token has the format: `<role>-<operation>-<unique token>`
+
+An example: `NSA-REDEL-098f6bcd4621d373cade4e832627b4f6`
+
+- The authorization is generated/issued by a registrar (`NSA`, for name server administrator)
+- The authorization is for a transfer operation (`REDEL`, for redelegation)
+- and finally a unique key
+
+Since an authorization could also be issue by the registrant or proxy, those example would resemble the following:
+
+As registrant: `OWN-REDEL-098f6bcd4621d373cade4e832627b4f6`
+
+- The authorization is generated/issued by a registrant (`OWN`, for registrant/_owner_)
+- The authorization is for a transfer operation (`REDEL`)
+- and finally a unique key
+
+As proxy `PXY-REDEL-098f6bcd4621d373cade4e832627b4f6`
+
+- The authorization is generated/issued by a registrant (`PXY`, for proxy)
+- The authorization is for a transfer operation (`REDEL`)
+- and finally a unique key
+
+The authorization expires after 14 days or by use. It can be retracted via the registrar portal, by deletion of the authorization.
 
 <a id="change-registrant-for-domain-name"></a>
 
@@ -762,34 +823,34 @@ For issue reporting related to this specification, the RP implementation or test
 
 ### Feature and Meta-role Matrix
 
-| Feature                                                                            | Meta-role     |
-|:-----------------------------------------------------------------------------------|:--------------|
-| [Create Portal User](#create-portal-user)                                          | Administrator |
-| [Enable/Disable Portal User](#enable-or-disable-portal-user)                       | Administrator |
-| [Edit Portal User](#edit-portal-user)                                              | Administrator |
-| [Delete Portal User](#delete-portal-user)                                          | Administrator |
-| [Create Service User](#create-service-user)                                        | Administrator |
-| [Enable/Disable Service User](#enable-or-disable-service-user)                     | Administrator |
-| [Edit Service User](#edit-service-user)                                            | Administrator |
-| [Delete Service User](#delete-service-user)                                        | Administrator |
-| [Link WHOIS Handle](#link-whois-handle)                                            | Administrator |
-| [Unlink WHOIS Handle](#unlink-whois-handle)                                        | Administrator |
-| [Merge WHOIS Handles](#mergewhois-handles)                                         | Administrator |
-| [Create WHOIS Registrar Account Handle](#create-whois-handle)                      | Administrator |
-| [Apply/Create domain name](#domain-name-application)                               | Registrar |
-| [Transfer Domain Name](#transfer-domain-name)                                      | Registrar |
-| Generate authorization for transfer                                                | Proxy |
-| [Add funds to Registrar Account](#add-funds-to-registrar-account)                  | Payer |
-| [Renew Domain Name](#renew-domain-name)                                            | Payer |
-| Change Name Servers                                                                | Name Server Administrator |
-| Generate authorization for change of name servers                                  | Name Server Administrator |
-| Administer Name Servers                                                            | Name Server Administrator |
-| Administer domain name                                                             | Proxy |
-| Administer WHOIS user registrant                                                   | Proxy |
-| [Restore Domain Name](#restore-domain-name)                                        | Proxy |
-| [Cancel/Delete Domain Name](#cancel-domain-name)                                   | Proxy |
-| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name) | Proxy |
-| Set period for domain name                                                         | Proxy / Payer |
+| Feature                                                                                                 | Meta-role                 |
+|:--------------------------------------------------------------------------------------------------------|:--------------------------|
+| [Create Portal User](#create-portal-user)                                                               | Administrator             |
+| [Enable/Disable Portal User](#enable-or-disable-portal-user)                                            | Administrator             |
+| [Edit Portal User](#edit-portal-user)                                                                   | Administrator             |
+| [Delete Portal User](#delete-portal-user)                                                               | Administrator             |
+| [Create Service User](#create-service-user)                                                             | Administrator             |
+| [Enable/Disable Service User](#enable-or-disable-service-user)                                          | Administrator             |
+| [Edit Service User](#edit-service-user)                                                                 | Administrator             |
+| [Delete Service User](#delete-service-user)                                                             | Administrator             |
+| [Link WHOIS Handle](#link-whois-handle)                                                                 | Administrator             |
+| [Unlink WHOIS Handle](#unlink-whois-handle)                                                             | Administrator             |
+| [Merge WHOIS Handles](#mergewhois-handles)                                                              | Administrator             |
+| [Create WHOIS Registrar Account Handle](#create-whois-handle)                                           | Administrator             |
+| [Apply/Create domain name](#domain-name-application)                                                    | Registrar                 |
+| [Transfer Domain Name](#transfer-domain-name)                                                           | Registrar                 |
+| [Generate Authorization for Transfer](#generate-authorization-for-transfer)                             | Proxy                     |
+| [Add funds to Registrar Account](#add-funds-to-registrar-account)                                       | Payer                     |
+| [Renew Domain Name](#renew-domain-name)                                                                 | Payer                     |
+| Change Name Servers                                                                                     | Name Server Administrator |
+| [Generate Authorization for Change of Name Servers](#generate-authorization-for-change-of-name-servers) | Name Server Administrator |
+| Administer Name Servers                                                                                 | Name Server Administrator |
+| Administer domain name                                                                                  | Proxy                     |
+| Administer WHOIS user registrant                                                                        | Proxy                     |
+| [Restore Domain Name](#restore-domain-name)                                                             | Proxy                     |
+| [Cancel/Delete Domain Name](#cancel-domain-name)                                                        | Proxy                     |
+| [Set auto-expire/renewal for domain name](#set-auto-expirerenewal-for-domain-name)                      | Proxy                     |
+| Set period for domain name                                                                              | Proxy / Payer             |
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg
