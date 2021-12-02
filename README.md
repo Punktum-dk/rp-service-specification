@@ -87,7 +87,7 @@ The document is targeted at registrars as audience.
 
 ### About this Document
 
-This specification describes version 2.X.X of the DK Hostmaster RP service. Future releases will be reflected in updates to this specification, please see the document history section below.
+This specification describes version 3.X.X of the DK Hostmaster RP service. Future releases will be reflected in updates to this specification, please see the document history section below.
 
 Screenshots for depicting features can be seen bu clicking the :eye_speech_bubble: icon. In the documentation the English versions are linked and used, equivalent versions in Danish are available in the screenshots directory of this repository, see also: [References](#references).
 
