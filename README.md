@@ -1,6 +1,6 @@
-![DK Hostmaster Logo][DKHMLOGO]
+![Punktum dk Logo][DKHMLOGO]
 
-# DK Hostmaster Registrar Portal Service specification
+# Punktum dk Registrar Portal Service specification
 
 ![Markdownlint Action][GHAMKDBADGE]
 ![Spellcheck Action][GHASPLLBADGE]
@@ -79,7 +79,7 @@ Revision 3.1
 
 ## Introduction
 
-This document describes the registrar self-service portal (RP) offered by DK Hostmaster.
+This document describes the registrar self-service portal (RP) offered by Punktum dk.
 
 The document is targeted at registrars as audience.
 
@@ -87,7 +87,7 @@ The document is targeted at registrars as audience.
 
 ### About this Document
 
-This specification describes version 3.X.X of the DK Hostmaster RP service. Future releases will be reflected in updates to this specification, please see the document history section below.
+This specification describes version 3.X.X of the Punktum dk RP service. Future releases will be reflected in updates to this specification, please see the document history section below.
 
 Screenshots for depicting features can be seen bu clicking the :eye_speech_bubble: icon. In the documentation the English versions are linked and used, equivalent versions in Danish are available in the screenshots directory of this repository, see also: [References](#references).
 
@@ -95,7 +95,7 @@ Do note that the specification describes the latest released service. Service ve
 
 Any future additions and changes to the implementation are not within the scope of this document and will not be discussed or mentioned throughout this document.
 
-This document is owned and maintained by DK Hostmaster A/S and must not be distributed without this information.
+This document is owned and maintained by Punktum dk A/S and must not be distributed without this information.
 
 All examples provided in the document are fabricated or changed from real data to demonstrate commands etc. any resemblance to actual data are coincidental.
 
@@ -105,7 +105,7 @@ This document is not the authoritative source for business and policy rules and 
 
 ### License
 
-This document is copyright by DK Hostmaster A/S and is licensed under the MIT License, please see the separate LICENSE file for details.
+This document is copyright by Punktum dk A/S and is licensed under the MIT License, please see the separate LICENSE file for details.
 
 <a id="document-history"></a>
 
@@ -140,13 +140,13 @@ This document is copyright by DK Hostmaster A/S and is licensed under the MIT Li
 
 ### The .dk Registry in Brief
 
-DK Hostmaster is the registry for the ccTLD for Denmark (dk). The current model used in Denmark is based on a sole registry, with DK Hostmaster maintaining the central DNS registry.
+Punktum dk is the registry for the ccTLD for Denmark (dk). The current model used in Denmark is based on a sole registry, with Punktum dk maintaining the central DNS registry.
 
 <a id="rp-in-brief"></a>
 
 ## RP in Brief
 
-RP is a web based service aimed at registrars and supporting their business and processed towards the DK Hostmaster registry.
+RP is a web based service aimed at registrars and supporting their business and processed towards the Punktum dk registry.
 
 <a id="rp-service"></a>
 
@@ -164,7 +164,7 @@ The RP service supports the following protocols for transport security:
 
 ### Available Environments
 
-DK Hostmaster offers the following two environments:
+Punktum dk offers the following two environments:
 
 - production
 - sandbox
@@ -199,9 +199,9 @@ Access to the RP service requires an active registrar account, please see the in
 
 ## IP Whitelisting
 
-DK Hostmaster requires whitelisting of IPs for access to the RP service.
+Punktum dk requires whitelisting of IPs for access to the RP service.
 
-Additions and removals of IP addresses can be handled by the registrar itself, but initial setup is currently a manual process handled by DK Hostmaster.
+Additions and removals of IP addresses can be handled by the registrar itself, but initial setup is currently a manual process handled by Punktum dk.
 
 Please submit change requests including registrar handle information to via the regular support channels.
 
@@ -238,7 +238,7 @@ The accounts are all represented towards the system using an email address.
 
 #### Meta-Roles
 
-The WHOIS system within the DK Hostmaster registry is based on a set of roles (WHOIS roles), used to resolve privileges and permissions.
+The WHOIS system within the Punktum dk registry is based on a set of roles (WHOIS roles), used to resolve privileges and permissions.
 
 For domain names these roles are:
 
@@ -479,9 +479,9 @@ The feature requires that the portal-user has the meta-role: `Registrar`, please
 As described in the ["Implementation guide for registration of .dk"][IMPLGUIDE] there are two methods for registration of domain names.
 
 1. Method 1: Requires that the accept of terms and conditions is done at the registrar and this is communicated via the application
-1. Method 2: Requires that the accept of terms and conditions is done at the registry (with DK Hostmaster)
+1. Method 2: Requires that the accept of terms and conditions is done at the registry (with Punktum dk)
 
-The application for allows for specification of a timestamp in the field: `Date & time`, in the section `DK Hostmaster's agreement accepted`
+The application for allows for specification of a timestamp in the field: `Date & time`, in the section `Punktum dk's agreement accepted`
 
 The entered date has to match the date and time when the registrant accepted the presented terms and conditions.
 
@@ -502,7 +502,7 @@ The fields available in the application form are the following:
 | Proxy handle | This is the optional handle of the designated proxy contact. Please see details below on [Management Choice](#mangement-choice) |
 | Payer handle | This is the optional handle of the designated billing contact. Please see details below on [Management Choice](#mangement-choice) |
 | Name servers | These are the mandatory name servers. At least two have to be specified and 7 as a maximum. |
-| DK Hostmaster's agreement accepted | This is for manually entering the timestamp for an end-user agreement to the Terms and Condition of DK Hostmaster |
+| Punktum dk's agreement accepted | This is for manually entering the timestamp for an end-user agreement to the Terms and Condition of Punktum dk |
 
 <a id="management-choice"></a>
 
@@ -524,7 +524,7 @@ The specified `Registrant` will have to be under the same management choice as t
 
 ##### Waiting List
 
-DK Hostmaster offers [a waiting list service][WAITLIST], where end-users can sign up for a waiting list position for a given domain name of their interest.
+Punktum dk offers [a waiting list service][WAITLIST], where end-users can sign up for a waiting list position for a given domain name of their interest.
 
 When a domain name is deleted, potential waiting list positions are evaluated and the domain name in question is offered to the first position.
 
@@ -550,7 +550,7 @@ The operation will change the registrar account:
 - A period fee for one year
 - A restoration fee
 
-See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
+See current prices at the Punktum dk website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
 
 <a id="set-auto-expirerenewal-for-domain-name"></a>
 
@@ -573,7 +573,7 @@ A manual cancellation cannot be performed on a domain name, which acts as supero
 An automatic cancellation however will be completed.
 
 - Either due to automatic expiration
-- Or by DK Hostmaster
+- Or by Punktum dk
 
 In these situations, the subordinate name servers are not deleted, they are marked for deletion.
 
@@ -663,7 +663,7 @@ Due to the registry requirements for ID-control and agreements to the registry t
 
 The request will be instant and the change registrant fee will be deducted from the registrar account upon success
 
-- If the request is not accompanied by an order confirmation token, an accept of the DK Hostmaster's terms and conditions by the registrant, will be requested by the registrar. This request is valid for 14 days
+- If the request is not accompanied by an order confirmation token, an accept of the Punktum dk's terms and conditions by the registrant, will be requested by the registrar. This request is valid for 14 days
 
 - If the designated registrant is required to complete ID-control, the registry will, as for accept of terms and conditions, contact the user directly are request the ID-control. The request expires after 14 days
 
@@ -678,7 +678,7 @@ The registrar is notified on all steps of the above process:
 
 As for the immediate successful execution, the delayed process the change registrant fee will be deducted from the registrar account upon success.
 
-See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
+See current prices at the Punktum dk website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
 
 <a id="renew-domain-name"></a>
 
@@ -693,7 +693,7 @@ Domain name subscriptions can be renewed manually via the registrar portal. The 
 
 This can be done up to the expiration date of the specific domain name. It does not influence automatic renewal or automatic expiration apart from delaying there effective execution and automatic change to the domain name lifespan.
 
-See current prices at the DK Hostmaster website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
+See current prices at the Punktum dk website: [Products and Prices][DKHMPRICES]. Insufficient funds in the registrar account will not prohibit this operation.
 
 <a id="name-server"></a>
 
@@ -721,7 +721,7 @@ The superordinate domain name might might become available for registration upon
 
 When name servers have been created they can be edited.
 
-For name servers, which are subordinate, to a .dk domain in the registrars portfolio. glue records can be added and removed. Glue records are supported for both IP version 4 and 6. Please see the section on the [glue record policy][DKHMDNSGLUE] in the [DK Hostmaster Name Service Specification][DKHMDNS].
+For name servers, which are subordinate, to a .dk domain in the registrars portfolio. glue records can be added and removed. Glue records are supported for both IP version 4 and 6. Please see the section on the [glue record policy][DKHMDNSGLUE] in the [Punktum dk Name Service Specification][DKHMDNS].
 
 The administrator for the name server can be changed as follows:
 
@@ -787,25 +787,25 @@ The ensure the speediest and most successful processing of  bank transfers make 
 
 List of references used in this document in alphabetical order.
 
-1. [DK Hostmaster: Become a registrar][DKHMBEREG]
-1. [DK Hostmaster: Implementation guide for registration of .dk][IMPLGUIDE]
-1. [DK Hostmaster: Sandbox Environment Specification][DKHMSANDBOX]
-1. [DK Hostmaster: EPP Service Specification][DKHMEPP]
-1. [DK Hostmaster: Name Service Specification][DKHMDNS]
-1. [DK Hostmaster: Products and Prices][DKHMPRICES]
-1. [DK Hostmaster: Registrar Portal Service Specification Screenshots](screenshots/)
+1. [Punktum dk: Become a registrar][DKHMBEREG]
+1. [Punktum dk: Implementation guide for registration of .dk][IMPLGUIDE]
+1. [Punktum dk: Sandbox Environment Specification][DKHMSANDBOX]
+1. [Punktum dk: EPP Service Specification][DKHMEPP]
+1. [Punktum dk: Name Service Specification][DKHMDNS]
+1. [Punktum dk: Products and Prices][DKHMPRICES]
+1. [Punktum dk: Registrar Portal Service Specification Screenshots](screenshots/)
 
 <a id="resources"></a>
 
 ## Resources
 
-A list of resources for DK Hostmaster Registrar Portal service support is located below.
+A list of resources for Punktum dk Registrar Portal service support is located below.
 
 <a id="mailing-list"></a>
 
 ### Mailing list
 
-DK Hostmaster operates a mailing list for discussion and inquiries  about the DK Hostmaster EPP implementation. To subscribe to this list, write to the address below and follow the instructions. Please note that the list is for technical discussion only, any issues beyond the technical scope will not be responded to, please send these to the contact issue reporting address below and they will be passed on to the appropriate entities within DK Hostmaster.
+Punktum dk operates a mailing list for discussion and inquiries  about the Punktum dk EPP implementation. To subscribe to this list, write to the address below and follow the instructions. Please note that the list is for technical discussion only, any issues beyond the technical scope will not be responded to, please send these to the contact issue reporting address below and they will be passed on to the appropriate entities within Punktum dk.
 
 - tech-discuss+subscribe@liste.dk-hostmaster.dk
 
