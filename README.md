@@ -3,7 +3,6 @@
 # Punktum dk Registrar Portal Service specification
 
 ![Markdownlint Action][GHAMKDBADGE]
-![Spellcheck Action][GHASPLLBADGE]
 
 2021-12-02
 Revision 3.1
@@ -854,7 +853,6 @@ For issue reporting related to this specification, the RP implementation or test
 
 [DKHMLOGO]: https://www.dk-hostmaster.dk/sites/default/files/dk-logo_0.png
 [GHAMKDBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Markdownlint%20Action/badge.svg
-[GHASPLLBADGE]: https://github.com/DK-Hostmaster/rp-service-specification/workflows/Spellcheck%20Action/badge.svg
 [IMPLGUIDE]: https://www.dk-hostmaster.dk/en/implementation-guide-registration-dk
 [WAITLIST]: https://www.dk-hostmaster.dk/en/waiting-list
 [DKHMMAIL]: https://www.dk-hostmaster.dk/en/mailing-lists
